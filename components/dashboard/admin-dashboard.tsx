@@ -1,11 +1,12 @@
-import { createClient } from "@/lib/supabase/server"
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { LogOut, Users, BookOpen, GraduationCap, TrendingUp } from "lucide-react"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 interface AdminDashboardProps {
   userId: string
@@ -14,36 +15,22 @@ interface AdminDashboardProps {
     full_name: string | null
     avatar_url: string | null
   }
+  recentProfiles: any[]
+  stats: {
+    totalStudents: number
+    totalTutors: number
+    totalParents: number
+    totalQuizzes: number
+    totalAttempts: number
+    totalAssignments: number
+  }
 }
 
-export async function AdminDashboard({ profile }: AdminDashboardProps) {
-  const supabase = await createClient()
+export function AdminDashboard({ profile, recentProfiles, stats }: AdminDashboardProps) {
+  const router = useRouter()
 
-  // Get platform statistics
-  const { count: totalStudents } = await supabase.from("students").select("*", { count: "exact", head: true })
-
-  const { count: totalTutors } = await supabase.from("tutors").select("*", { count: "exact", head: true })
-
-  const { count: totalParents } = await supabase.from("parents").select("*", { count: "exact", head: true })
-
-  const { count: totalQuizzes } = await supabase.from("quizzes").select("*", { count: "exact", head: true })
-
-  const { count: totalAttempts } = await supabase.from("quiz_attempts").select("*", { count: "exact", head: true })
-
-  const { count: totalAssignments } = await supabase.from("assignments").select("*", { count: "exact", head: true })
-
-  // Get recent users
-  const { data: recentProfiles } = await supabase
-    .from("profiles")
-    .select("*")
-    .order("created_at", { ascending: false })
-    .limit(5)
-
-  async function signOut() {
-    "use server"
-    const supabase = await createClient()
-    await supabase.auth.signOut()
-    redirect("/auth/login")
+  const handleSignOut = () => {
+    router.push("/auth/login")
   }
 
   return (
@@ -67,11 +54,9 @@ export async function AdminDashboard({ profile }: AdminDashboardProps) {
                 <p className="font-semibold">{profile.full_name}</p>
                 <p className="text-xs text-muted-foreground">Administrator</p>
               </div>
-              <form action={signOut}>
-                <Button variant="ghost" size="icon">
-                  <LogOut className="h-5 w-5" />
-                </Button>
-              </form>
+              <Button variant="ghost" size="icon" onClick={handleSignOut}>
+                <LogOut className="h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>
@@ -88,7 +73,7 @@ export async function AdminDashboard({ profile }: AdminDashboardProps) {
                   <Users className="h-4 w-4" />
                   Students
                 </CardDescription>
-                <CardTitle className="text-3xl">{totalStudents || 0}</CardTitle>
+                <CardTitle className="text-3xl">{stats.totalStudents}</CardTitle>
               </CardHeader>
             </Card>
 
@@ -98,7 +83,7 @@ export async function AdminDashboard({ profile }: AdminDashboardProps) {
                   <GraduationCap className="h-4 w-4" />
                   Tutors
                 </CardDescription>
-                <CardTitle className="text-3xl">{totalTutors || 0}</CardTitle>
+                <CardTitle className="text-3xl">{stats.totalTutors}</CardTitle>
               </CardHeader>
             </Card>
 
@@ -108,7 +93,7 @@ export async function AdminDashboard({ profile }: AdminDashboardProps) {
                   <Users className="h-4 w-4" />
                   Parents
                 </CardDescription>
-                <CardTitle className="text-3xl">{totalParents || 0}</CardTitle>
+                <CardTitle className="text-3xl">{stats.totalParents}</CardTitle>
               </CardHeader>
             </Card>
 
@@ -118,7 +103,7 @@ export async function AdminDashboard({ profile }: AdminDashboardProps) {
                   <BookOpen className="h-4 w-4" />
                   Quizzes
                 </CardDescription>
-                <CardTitle className="text-3xl">{totalQuizzes || 0}</CardTitle>
+                <CardTitle className="text-3xl">{stats.totalQuizzes}</CardTitle>
               </CardHeader>
             </Card>
 
@@ -128,7 +113,7 @@ export async function AdminDashboard({ profile }: AdminDashboardProps) {
                   <TrendingUp className="h-4 w-4" />
                   Attempts
                 </CardDescription>
-                <CardTitle className="text-3xl">{totalAttempts || 0}</CardTitle>
+                <CardTitle className="text-3xl">{stats.totalAttempts}</CardTitle>
               </CardHeader>
             </Card>
 
@@ -138,7 +123,7 @@ export async function AdminDashboard({ profile }: AdminDashboardProps) {
                   <BookOpen className="h-4 w-4" />
                   Assignments
                 </CardDescription>
-                <CardTitle className="text-3xl">{totalAssignments || 0}</CardTitle>
+                <CardTitle className="text-3xl">{stats.totalAssignments}</CardTitle>
               </CardHeader>
             </Card>
           </div>

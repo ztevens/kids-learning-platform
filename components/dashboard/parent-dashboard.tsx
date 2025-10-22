@@ -1,11 +1,12 @@
-import { createClient } from "@/lib/supabase/server"
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { LogOut, TrendingUp, TrendingDown, Calendar } from "lucide-react"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { Progress } from "@/components/ui/progress"
 
 interface ParentDashboardProps {
@@ -15,52 +16,16 @@ interface ParentDashboardProps {
     full_name: string | null
     avatar_url: string | null
   }
+  parent: any
+  children: any[]
+  weeklyInsights: any[]
 }
 
-export async function ParentDashboard({ userId, profile }: ParentDashboardProps) {
-  const supabase = await createClient()
+export function ParentDashboard({ profile, parent, children, weeklyInsights }: ParentDashboardProps) {
+  const router = useRouter()
 
-  // Get or create parent record
-  let { data: parent } = await supabase.from("parents").select("*").eq("profile_id", userId).single()
-
-  if (!parent) {
-    const { data: newParent } = await supabase
-      .from("parents")
-      .insert({
-        profile_id: userId,
-        subscription_tier: "basic",
-        subscription_status: "inactive",
-      })
-      .select()
-      .single()
-    parent = newParent
-  }
-
-  // Get children (students linked to this parent)
-  const { data: children } = await supabase
-    .from("students")
-    .select(
-      `
-      *,
-      profile:profiles(full_name, email)
-    `,
-    )
-    .eq("parent_id", userId)
-    .order("profile(full_name)")
-
-  // Get weekly insights for all children
-  const childrenIds = children?.map((c) => c.id) || []
-  const { data: weeklyInsights } = await supabase
-    .from("weekly_insights")
-    .select("*")
-    .in("student_id", childrenIds)
-    .order("week_start_date", { ascending: false })
-
-  async function signOut() {
-    "use server"
-    const supabase = await createClient()
-    await supabase.auth.signOut()
-    redirect("/auth/login")
+  const handleSignOut = () => {
+    router.push("/auth/login")
   }
 
   return (
@@ -84,11 +49,9 @@ export async function ParentDashboard({ userId, profile }: ParentDashboardProps)
                 <p className="font-semibold">{profile.full_name}</p>
                 <p className="text-xs text-muted-foreground">Parent Account</p>
               </div>
-              <form action={signOut}>
-                <Button variant="ghost" size="icon">
-                  <LogOut className="h-5 w-5" />
-                </Button>
-              </form>
+              <Button variant="ghost" size="icon" onClick={handleSignOut}>
+                <LogOut className="h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>

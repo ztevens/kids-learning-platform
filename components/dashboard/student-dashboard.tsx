@@ -1,4 +1,5 @@
-import { createClient } from "@/lib/supabase/server"
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 import { Badge } from "@/components/ui/badge"
@@ -13,52 +14,12 @@ interface StudentDashboardProps {
     full_name: string | null
     avatar_url: string | null
   }
+  student: any
+  subjects: any[]
+  recentAttempts: any[]
 }
 
-export async function StudentDashboard({ userId, profile }: StudentDashboardProps) {
-  const supabase = await createClient()
-
-  // Get or create student record
-  let { data: student } = await supabase.from("students").select("*").eq("profile_id", userId).single()
-
-  if (!student) {
-    // Create student record if it doesn't exist
-    const { data: newStudent } = await supabase
-      .from("students")
-      .insert({
-        profile_id: userId,
-        year_group: 1,
-        points: 0,
-        level: 1,
-        streak_days: 0,
-      })
-      .select()
-      .single()
-    student = newStudent
-  }
-
-  // Get subjects
-  const { data: subjects } = await supabase.from("subjects").select("*").order("name")
-
-  // Get recent quiz attempts
-  const { data: recentAttempts } = await supabase
-    .from("quiz_attempts")
-    .select(
-      `
-      *,
-      quiz:quizzes(
-        title,
-        topic:topics(
-          name,
-          subject:subjects(name, color)
-        )
-      )
-    `,
-    )
-    .eq("student_id", student?.id)
-    .order("completed_at", { ascending: false })
-    .limit(5)
-
+export function StudentDashboard({ profile, student, subjects, recentAttempts }: StudentDashboardProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <StudentHeader

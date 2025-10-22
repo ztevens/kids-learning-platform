@@ -38,6 +38,13 @@ export default async function CreateAssignmentPage() {
   // Get all subjects
   const { data: subjects } = await supabase.from("subjects").select("*").order("name")
 
+  // Transform students data to match expected structure
+  const transformedStudents = students?.map(student => ({
+    id: student.id,
+    year_group: student.year_group,
+    profile: student.profile ? { full_name: student.profile.full_name } : null
+  })) || []
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <header className="bg-white border-b border-gray-200 shadow-sm">
@@ -56,7 +63,7 @@ export default async function CreateAssignmentPage() {
       <main className="container mx-auto p-6 max-w-2xl">
         <CreateAssignmentForm 
           tutorId={tutor.id} 
-          students={students || []} 
+          students={transformedStudents} 
           subjects={subjects || []} 
         />
       </main>

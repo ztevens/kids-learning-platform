@@ -1,11 +1,12 @@
-import { createClient } from "@/lib/supabase/server"
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { LogOut, Plus, Users, BookOpen, CheckCircle2, Clock } from "lucide-react"
 import Link from "next/link"
-import { redirect } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 interface TutorDashboardProps {
   userId: string
@@ -14,42 +15,12 @@ interface TutorDashboardProps {
     full_name: string | null
     avatar_url: string | null
   }
+  tutor: any
+  assignments: any[]
 }
 
-export async function TutorDashboard({ userId, profile }: TutorDashboardProps) {
-  const supabase = await createClient()
-
-  // Get or create tutor record
-  let { data: tutor } = await supabase.from("tutors").select("*").eq("profile_id", userId).single()
-
-  if (!tutor) {
-    const { data: newTutor } = await supabase
-      .from("tutors")
-      .insert({
-        profile_id: userId,
-        specialization: [],
-        verified: false,
-      })
-      .select()
-      .single()
-    tutor = newTutor
-  }
-
-  // Get assignments created by this tutor
-  const { data: assignments } = await supabase
-    .from("assignments")
-    .select(
-      `
-      *,
-      student:students(
-        profile:profiles(full_name)
-      ),
-      subject:subjects(name, color)
-    `,
-    )
-    .eq("tutor_id", tutor?.id)
-    .order("created_at", { ascending: false })
-    .limit(10)
+export function TutorDashboard({ userId, profile, tutor, assignments }: TutorDashboardProps) {
+  const router = useRouter()
 
   // Count assignments by status
   const assignedCount = assignments?.filter((a) => a.status === "assigned").length || 0
@@ -57,11 +28,8 @@ export async function TutorDashboard({ userId, profile }: TutorDashboardProps) {
   const submittedCount = assignments?.filter((a) => a.status === "submitted").length || 0
   const gradedCount = assignments?.filter((a) => a.status === "graded").length || 0
 
-  async function signOut() {
-    "use server"
-    const supabase = await createClient()
-    await supabase.auth.signOut()
-    redirect("/auth/login")
+  const handleSignOut = () => {
+    router.push("/auth/login")
   }
 
   return (
@@ -85,11 +53,9 @@ export async function TutorDashboard({ userId, profile }: TutorDashboardProps) {
                 <p className="font-semibold">{profile.full_name}</p>
                 <p className="text-xs text-muted-foreground">Tutor Account</p>
               </div>
-              <form action={signOut}>
-                <Button variant="ghost" size="icon">
-                  <LogOut className="h-5 w-5" />
-                </Button>
-              </form>
+              <Button variant="ghost" size="icon" onClick={handleSignOut}>
+                <LogOut className="h-5 w-5" />
+              </Button>
             </div>
           </div>
         </div>
