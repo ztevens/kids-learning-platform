@@ -35,9 +35,11 @@ export default async function AdminSubjectsPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       <MainNav showBackButton={true} backHref="/dashboard" backLabel="Dashboard">
         <span className="text-lg font-semibold">Subject Management</span>
-        <Button className="gap-2">
-          <Plus className="h-4 w-4" />
-          Add Subject
+        <Button className="gap-2" asChild>
+          <Link href="/admin/subjects/create">
+            <Plus className="h-4 w-4" />
+            Add Subject
+          </Link>
         </Button>
       </MainNav>
 
@@ -63,11 +65,15 @@ export default async function AdminSubjectsPage() {
                     Year Groups: {subject.year_groups?.join(", ") || "All"}
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1 bg-transparent">
-                      Edit
+                    <Button variant="outline" size="sm" className="flex-1 bg-transparent" asChild>
+                      <Link href={`/admin/subjects/${subject.id}/edit`}>
+                        Edit
+                      </Link>
                     </Button>
-                    <Button variant="outline" size="sm" className="flex-1 bg-transparent">
-                      View Topics
+                    <Button variant="outline" size="sm" className="flex-1 bg-transparent" asChild>
+                      <Link href={`/admin/subjects/${subject.id}/topics`}>
+                        View Topics
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -78,9 +84,11 @@ export default async function AdminSubjectsPage() {
           <Card>
             <CardContent className="p-12 text-center">
               <p className="text-muted-foreground mb-4">No subjects found</p>
-              <Button>
-                <Plus className="h-4 w-4 mr-2" />
-                Add First Subject
+              <Button asChild>
+                <Link href="/admin/subjects/create">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Add First Subject
+                </Link>
               </Button>
             </CardContent>
           </Card>
