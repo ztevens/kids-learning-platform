@@ -5,6 +5,9 @@ import { TutorDashboard } from "@/components/dashboard/tutor-dashboard"
 import { ParentDashboard } from "@/components/dashboard/parent-dashboard"
 import { AdminDashboard } from "@/components/dashboard/admin-dashboard"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function DashboardPage() {
   const supabase = await createClient()
 

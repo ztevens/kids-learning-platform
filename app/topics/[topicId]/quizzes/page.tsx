@@ -6,6 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowLeft, Clock, Trophy } from "lucide-react"
 import Link from "next/link"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function TopicQuizzesPage({ params }: { params: Promise<{ topicId: string }> }) {
   const { topicId } = await params
   const supabase = await createClient()

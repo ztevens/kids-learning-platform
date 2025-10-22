@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function CreateAssignmentPage() {
   const supabase = await createClient()
 

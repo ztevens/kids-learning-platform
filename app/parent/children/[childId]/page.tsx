@@ -7,6 +7,9 @@ import { Progress } from "@/components/ui/progress"
 import { ArrowLeft, TrendingUp, TrendingDown, Award, Calendar, Clock } from "lucide-react"
 import Link from "next/link"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function ChildProgressPage({ params }: { params: Promise<{ childId: string }> }) {
   const { childId } = await params
   const supabase = await createClient()

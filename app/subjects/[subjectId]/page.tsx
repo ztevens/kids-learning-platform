@@ -6,6 +6,9 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function SubjectPage({ params }: { params: Promise<{ subjectId: string }> }) {
   const { subjectId } = await params
   const supabase = await createClient()
