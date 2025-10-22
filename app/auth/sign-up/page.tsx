@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { FancyLogo } from "@/components/ui/fancy-logo"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -77,10 +78,10 @@ export default function SignUpPage() {
       <div className="w-full max-w-sm relative z-10">
         <div className="flex flex-col gap-6">
           <div className="text-center">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
-              IYF STUDIO
-            </h1>
-            <p className="text-muted-foreground">Start your learning journey!</p>
+            <div className="flex justify-center mb-2">
+              <FancyLogo size="lg" clickable={true} />
+            </div>
+            <p className="text-muted-foreground">Start your learning journey! 🚀</p>
           </div>
           <Card className="bg-white/80 backdrop-blur-sm border-2 border-purple-200 shadow-lg">
             <CardHeader>

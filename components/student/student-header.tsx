@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { LogOut } from "lucide-react"
+import { LogOut, Home } from "lucide-react"
+import { FancyLogo } from "@/components/ui/fancy-logo"
 import { signOut } from "@/app/actions/auth"
+import Link from "next/link"
 
 interface StudentHeaderProps {
   studentName: string
@@ -19,10 +21,17 @@ export function StudentHeader({ studentName, points, level, streakDays }: Studen
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-3xl font-bold text-blue-600">IYF STUDIO</h1>
+            <FancyLogo size="md" clickable={true} />
           </div>
 
           <div className="flex items-center gap-6">
+            <Button variant="ghost" size="sm" asChild className="hidden sm:flex">
+              <Link href="/dashboard" className="flex items-center gap-2">
+                <Home className="h-4 w-4" />
+                Dashboard
+              </Link>
+            </Button>
+            
             <div className="hidden md:flex items-center gap-6 text-sm">
               <div className="text-center">
                 <p className="text-muted-foreground">Points</p>

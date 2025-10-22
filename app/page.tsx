@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { FancyLogo } from "@/components/ui/fancy-logo"
 import Link from "next/link"
 
 export default function HomePage() {
@@ -34,10 +35,10 @@ export default function HomePage() {
       
       <div className="max-w-4xl text-center space-y-8 relative z-10">
         <div className="space-y-4">
-          <h1 className="text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent tracking-tight">
-            IYF STUDIO
-          </h1>
-          <p className="text-2xl text-muted-foreground">Gamified Learning Platform for Years 1-6</p>
+          <div className="flex justify-center">
+            <FancyLogo size="xl" clickable={false} />
+          </div>
+          <p className="text-2xl text-muted-foreground">Gamified Learning Platform for Years 1-6 🎮📚</p>
         </div>
 
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
