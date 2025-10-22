@@ -1,8 +1,9 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { LogOut } from "lucide-react"
-import { createClient } from "@/lib/supabase/server"
-import { redirect } from "next/navigation"
+import { signOut } from "@/app/actions/auth"
 
 interface StudentHeaderProps {
   studentName: string
@@ -12,12 +13,6 @@ interface StudentHeaderProps {
 }
 
 export function StudentHeader({ studentName, points, level, streakDays }: StudentHeaderProps) {
-  async function signOut() {
-    "use server"
-    const supabase = await createClient()
-    await supabase.auth.signOut()
-    redirect("/auth/login")
-  }
 
   return (
     <header className="bg-white border-b border-gray-200 shadow-sm">

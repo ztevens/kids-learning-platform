@@ -8,6 +8,9 @@ import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function AdminUsersPage() {
   const supabase = await createClient()
 
