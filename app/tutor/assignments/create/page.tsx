@@ -54,7 +54,11 @@ export default async function CreateAssignmentPage() {
       </header>
 
       <main className="container mx-auto p-6 max-w-2xl">
-        <CreateAssignmentForm tutorId={tutor.id} students={students || []} subjects={subjects || []} />
+        <CreateAssignmentForm 
+          tutorId={tutor.id} 
+          students={students || []} 
+          subjects={subjects || []} 
+        />
       </main>
     </div>
   )

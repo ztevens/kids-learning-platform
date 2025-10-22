@@ -161,7 +161,7 @@ export default async function ChildProgressPage({ params }: { params: Promise<{ 
                           Strengths
                         </div>
                         <div className="flex flex-wrap gap-1">
-                          {insight.strengths.map((strength, idx) => (
+                          {insight.strengths.map((strength: string, idx: number) => (
                             <Badge key={idx} variant="secondary" className="text-xs">
                               {strength}
                             </Badge>
@@ -177,7 +177,7 @@ export default async function ChildProgressPage({ params }: { params: Promise<{ 
                           Areas to Improve
                         </div>
                         <div className="flex flex-wrap gap-1">
-                          {insight.areas_for_improvement.map((area, idx) => (
+                          {insight.areas_for_improvement.map((area: string, idx: number) => (
                             <Badge key={idx} variant="outline" className="text-xs">
                               {area}
                             </Badge>
