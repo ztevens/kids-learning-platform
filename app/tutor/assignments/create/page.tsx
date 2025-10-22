@@ -42,7 +42,7 @@ export default async function CreateAssignmentPage() {
   const transformedStudents = students?.map(student => ({
     id: student.id,
     year_group: student.year_group,
-    profile: student.profile ? { full_name: student.profile.full_name } : null
+    profile: student.profile ? { full_name: (student.profile as { full_name: string }).full_name } : null
   })) || []
 
   return (
