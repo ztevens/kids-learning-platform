@@ -39,11 +39,22 @@ export default async function CreateAssignmentPage() {
   const { data: subjects } = await supabase.from("subjects").select("*").order("name")
 
   // Transform students data to match expected structure
-  const transformedStudents = students?.map(student => ({
-    id: student.id,
-    year_group: student.year_group,
-    profile: student.profile ? { full_name: (student.profile as { full_name: string }).full_name } : null
-  })) || []
+  const transformedStudents = students?.map(student => {
+    // Handle case where profile might be an array
+    let profileData = null;
+    if (student.profile) {
+      const profile = Array.isArray(student.profile) ? student.profile[0] : student.profile;
+      if (profile && profile.full_name) {
+        profileData = { full_name: profile.full_name };
+      }
+    }
+    
+    return {
+      id: student.id,
+      year_group: student.year_group,
+      profile: profileData
+    };
+  }) || []
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
