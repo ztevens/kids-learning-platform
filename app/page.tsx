@@ -7,29 +7,29 @@ export default function HomePage() {
       {/* Background illustrations */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* Books */}
-        <div className="absolute top-10 left-10 text-5xl animate-bounce" style={{ animationDelay: '0s' }}>📚</div>
-        <div className="absolute top-20 right-20 text-4xl animate-bounce" style={{ animationDelay: '1s' }}>📖</div>
-        <div className="absolute bottom-40 left-20 text-5xl animate-bounce" style={{ animationDelay: '2s' }}>📘</div>
+        <div className="absolute top-10 left-10 text-5xl animate-bounce">📚</div>
+        <div className="absolute top-20 right-20 text-4xl animate-bounce">📖</div>
+        <div className="absolute bottom-40 left-20 text-5xl animate-bounce">📘</div>
         
         {/* Tech devices */}
-        <div className="absolute top-32 right-10 text-5xl animate-bounce" style={{ animationDelay: '0.5s' }}>💻</div>
-        <div className="absolute bottom-20 right-32 text-4xl animate-bounce" style={{ animationDelay: '1.5s' }}>📱</div>
-        <div className="absolute top-60 left-32 text-5xl animate-bounce" style={{ animationDelay: '2.5s' }}>🎧</div>
+        <div className="absolute top-32 right-10 text-5xl animate-bounce">💻</div>
+        <div className="absolute bottom-20 right-32 text-4xl animate-bounce">📱</div>
+        <div className="absolute top-60 left-32 text-5xl animate-bounce">🎧</div>
         
         {/* Learning items */}
-        <div className="absolute bottom-60 left-1/4 text-4xl animate-bounce" style={{ animationDelay: '0.8s' }}>✏️</div>
-        <div className="absolute top-40 left-1/3 text-5xl animate-bounce" style={{ animationDelay: '1.8s' }}>📐</div>
-        <div className="absolute bottom-40 right-1/3 text-5xl animate-bounce" style={{ animationDelay: '2.8s' }}>🔬</div>
+        <div className="absolute bottom-60 left-1/4 text-4xl animate-bounce">✏️</div>
+        <div className="absolute top-40 left-1/3 text-5xl animate-bounce">📐</div>
+        <div className="absolute bottom-40 right-1/3 text-5xl animate-bounce">🔬</div>
         
         {/* Kids learning */}
-        <div className="absolute top-1/4 left-10 text-5xl animate-pulse" style={{ animationDelay: '0s' }}>👧</div>
-        <div className="absolute top-1/3 right-10 text-5xl animate-pulse" style={{ animationDelay: '1s' }}>👦</div>
-        <div className="absolute bottom-1/4 left-20 text-5xl animate-pulse" style={{ animationDelay: '2s' }}>🧒</div>
-        <div className="absolute bottom-1/3 right-20 text-5xl animate-pulse" style={{ animationDelay: '3s' }}>🧑‍🎓</div>
+        <div className="absolute top-1/4 left-10 text-5xl animate-pulse">👧</div>
+        <div className="absolute top-1/3 right-10 text-5xl animate-pulse">👦</div>
+        <div className="absolute bottom-1/4 left-20 text-5xl animate-pulse">🧒</div>
+        <div className="absolute bottom-1/3 right-20 text-5xl animate-pulse">🧑‍🎓</div>
         
         {/* Fun elements */}
-        <div className="absolute top-1/2 left-1/4 text-4xl animate-spin" style={{ animationDelay: '0s' }}>⭐</div>
-        <div className="absolute bottom-1/2 right-1/4 text-4xl animate-spin" style={{ animationDelay: '1s' }}>🌟</div>
+        <div className="absolute top-1/2 left-1/4 text-4xl animate-spin">⭐</div>
+        <div className="absolute bottom-1/2 right-1/4 text-4xl animate-spin">🌟</div>
       </div>
       
       <div className="max-w-4xl text-center space-y-8 relative z-10">
