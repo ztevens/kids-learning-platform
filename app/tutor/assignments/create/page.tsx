@@ -26,35 +26,23 @@ export default async function CreateAssignmentPage() {
   // Get all students
   const { data: students } = await supabase
     .from("students")
-    .select(
-      `
+    .select(`
       id,
       year_group,
       profile:profiles(full_name)
-    `,
-    )
-    .order("profile(full_name)")
+    `)
+    .order("profile.full_name")
 
   // Get all subjects
   const { data: subjects } = await supabase.from("subjects").select("*").order("name")
 
-  // Transform students data to match expected structure
-  const transformedStudents = students?.map(student => {
-    // Handle case where profile might be an array
-    let profileData = null;
-    if (student.profile) {
-      const profile = Array.isArray(student.profile) ? student.profile[0] : student.profile;
-      if (profile && (profile as { full_name: string }).full_name) {
-        profileData = { full_name: (profile as { full_name: string }).full_name };
-      }
-    }
-    
-    return {
-      id: student.id,
-      year_group: student.year_group,
-      profile: profileData
-    };
-  }) || []
+  // Transform students data to match the expected structure
+  const transformedStudents = students?.map(student => ({
+    ...student,
+    profile: student.profile && student.profile.length > 0 
+      ? student.profile[0] 
+      : null
+  })) || []
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
