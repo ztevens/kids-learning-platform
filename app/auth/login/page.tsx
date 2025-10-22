@@ -40,8 +40,25 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
-      <div className="w-full max-w-sm">
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100 relative overflow-hidden">
+      {/* Background illustrations */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute top-10 left-10 text-4xl animate-bounce opacity-30" style={{ animationDelay: '0s' }}>📚</div>
+        <div className="absolute top-20 right-20 text-3xl animate-bounce opacity-30" style={{ animationDelay: '1s' }}>📖</div>
+        <div className="absolute bottom-40 left-20 text-4xl animate-bounce opacity-30" style={{ animationDelay: '2s' }}>📘</div>
+        <div className="absolute top-32 right-10 text-4xl animate-bounce opacity-30" style={{ animationDelay: '0.5s' }}>💻</div>
+        <div className="absolute bottom-20 right-32 text-3xl animate-bounce opacity-30" style={{ animationDelay: '1.5s' }}>📱</div>
+        <div className="absolute top-60 left-32 text-4xl animate-bounce opacity-30" style={{ animationDelay: '2.5s' }}>🎧</div>
+        <div className="absolute bottom-60 left-1/4 text-3xl animate-bounce opacity-30" style={{ animationDelay: '0.8s' }}>✏️</div>
+        <div className="absolute top-40 left-1/3 text-4xl animate-bounce opacity-30" style={{ animationDelay: '1.8s' }}>📐</div>
+        <div className="absolute bottom-40 right-1/3 text-4xl animate-bounce opacity-30" style={{ animationDelay: '2.8s' }}>🔬</div>
+        <div className="absolute top-1/4 left-10 text-4xl animate-pulse opacity-30" style={{ animationDelay: '0s' }}>👧</div>
+        <div className="absolute top-1/3 right-10 text-4xl animate-pulse opacity-30" style={{ animationDelay: '1s' }}>👦</div>
+        <div className="absolute bottom-1/4 left-20 text-4xl animate-pulse opacity-30" style={{ animationDelay: '2s' }}>🧒</div>
+        <div className="absolute bottom-1/3 right-20 text-4xl animate-pulse opacity-30" style={{ animationDelay: '3s' }}>🧑‍🎓</div>
+      </div>
+      
+      <div className="w-full max-w-sm relative z-10">
         <div className="flex flex-col gap-6">
           <div className="text-center">
             <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
