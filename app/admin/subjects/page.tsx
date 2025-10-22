@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { MainNav } from "@/components/navigation/main-nav"
 import { ArrowLeft, Plus } from "lucide-react"
 import Link from "next/link"
 
@@ -32,24 +33,13 @@ export default async function AdminSubjectsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      <header className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button asChild variant="ghost" size="icon">
-                <Link href="/dashboard">
-                  <ArrowLeft className="h-5 w-5" />
-                </Link>
-              </Button>
-              <h1 className="text-2xl font-bold">Subject Management</h1>
-            </div>
-            <Button className="gap-2">
-              <Plus className="h-4 w-4" />
-              Add Subject
-            </Button>
-          </div>
-        </div>
-      </header>
+      <MainNav showBackButton={true} backHref="/dashboard" backLabel="Dashboard">
+        <span className="text-lg font-semibold">Subject Management</span>
+        <Button className="gap-2">
+          <Plus className="h-4 w-4" />
+          Add Subject
+        </Button>
+      </MainNav>
 
       <main className="container mx-auto p-6">
         {subjects && subjects.length > 0 ? (

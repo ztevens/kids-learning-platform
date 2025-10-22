@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FancyLogo } from "@/components/ui/fancy-logo"
+import { MainNav } from "@/components/navigation/main-nav"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -41,7 +42,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100 relative overflow-hidden">
+    <>
+      <MainNav showHomeButton={true} showBackButton={false} />
+      <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100 relative overflow-hidden">
       {/* Background illustrations */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute top-10 left-10 text-4xl animate-bounce opacity-30">📚</div>
@@ -119,5 +122,6 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }

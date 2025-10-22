@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
+import { MainNav } from "@/components/navigation/main-nav"
 
 // Force dynamic rendering
 export const dynamic = 'force-dynamic'
@@ -34,18 +35,9 @@ export default async function AdminUsersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      <header className="bg-white border-b border-gray-200 shadow-sm">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center gap-4">
-            <Button asChild variant="ghost" size="icon">
-              <Link href="/dashboard">
-                <ArrowLeft className="h-5 w-5" />
-              </Link>
-            </Button>
-            <h1 className="text-2xl font-bold">User Management</h1>
-          </div>
-        </div>
-      </header>
+      <MainNav showBackButton={true} backHref="/dashboard" backLabel="Dashboard">
+        <span className="text-lg font-semibold">User Management</span>
+      </MainNav>
 
       <main className="container mx-auto p-6">
         <div className="mb-6">
