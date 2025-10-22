@@ -40,17 +40,19 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
       <div className="w-full max-w-sm">
         <div className="flex flex-col gap-6">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-blue-600 mb-2">IYF STUDIO</h1>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+              IYF STUDIO
+            </h1>
             <p className="text-muted-foreground">Welcome back to learning!</p>
           </div>
-          <Card>
+          <Card className="bg-white/80 backdrop-blur-sm border-2 border-purple-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl">Login</CardTitle>
-              <CardDescription>Enter your email to access your account</CardDescription>
+              <CardTitle className="text-2xl text-center">Login</CardTitle>
+              <CardDescription className="text-center">Enter your email to access your account</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleLogin}>
@@ -64,6 +66,7 @@ export default function LoginPage() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      className="border-2 border-blue-200 focus:border-blue-400"
                     />
                   </div>
                   <div className="grid gap-2">
@@ -74,16 +77,21 @@ export default function LoginPage() {
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      className="border-2 border-purple-200 focus:border-purple-400"
                     />
                   </div>
-                  {error && <p className="text-sm text-destructive">{error}</p>}
-                  <Button type="submit" className="w-full" disabled={isLoading}>
+                  {error && <p className="text-sm text-destructive text-center">{error}</p>}
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                    disabled={isLoading}
+                  >
                     {isLoading ? "Logging in..." : "Login"}
                   </Button>
                 </div>
                 <div className="mt-4 text-center text-sm">
                   Don&apos;t have an account?{" "}
-                  <Link href="/auth/sign-up" className="underline underline-offset-4 text-blue-600">
+                  <Link href="/auth/sign-up" className="underline underline-offset-4 text-blue-600 hover:text-purple-600">
                     Sign up
                   </Link>
                 </div>

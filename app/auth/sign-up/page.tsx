@@ -56,17 +56,19 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100">
       <div className="w-full max-w-sm">
         <div className="flex flex-col gap-6">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-blue-600 mb-2">IYF STUDIO</h1>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">
+              IYF STUDIO
+            </h1>
             <p className="text-muted-foreground">Start your learning journey!</p>
           </div>
-          <Card>
+          <Card className="bg-white/80 backdrop-blur-sm border-2 border-purple-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-2xl">Sign up</CardTitle>
-              <CardDescription>Create your account</CardDescription>
+              <CardTitle className="text-2xl text-center">Sign up</CardTitle>
+              <CardDescription className="text-center">Create your account</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSignUp}>
@@ -80,6 +82,7 @@ export default function SignUpPage() {
                       required
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
+                      className="border-2 border-blue-200 focus:border-blue-400"
                     />
                   </div>
                   <div className="grid gap-2">
@@ -91,12 +94,13 @@ export default function SignUpPage() {
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      className="border-2 border-purple-200 focus:border-purple-400"
                     />
                   </div>
                   <div className="grid gap-2">
                     <Label htmlFor="role">I am a...</Label>
                     <Select value={role} onValueChange={setRole}>
-                      <SelectTrigger>
+                      <SelectTrigger className="border-2 border-pink-200 focus:border-pink-400">
                         <SelectValue placeholder="Select your role" />
                       </SelectTrigger>
                       <SelectContent>
@@ -114,6 +118,7 @@ export default function SignUpPage() {
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      className="border-2 border-green-200 focus:border-green-400"
                     />
                   </div>
                   <div className="grid gap-2">
@@ -124,16 +129,21 @@ export default function SignUpPage() {
                       required
                       value={repeatPassword}
                       onChange={(e) => setRepeatPassword(e.target.value)}
+                      className="border-2 border-yellow-200 focus:border-yellow-400"
                     />
                   </div>
-                  {error && <p className="text-sm text-destructive">{error}</p>}
-                  <Button type="submit" className="w-full" disabled={isLoading}>
+                  {error && <p className="text-sm text-destructive text-center">{error}</p>}
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                    disabled={isLoading}
+                  >
                     {isLoading ? "Creating account..." : "Sign up"}
                   </Button>
                 </div>
                 <div className="mt-4 text-center text-sm">
                   Already have an account?{" "}
-                  <Link href="/auth/login" className="underline underline-offset-4 text-blue-600">
+                  <Link href="/auth/login" className="underline underline-offset-4 text-blue-600 hover:text-purple-600">
                     Login
                   </Link>
                 </div>

@@ -60,7 +60,7 @@ export async function StudentDashboard({ userId, profile }: StudentDashboardProp
     .limit(5)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       <StudentHeader
         studentName={profile.full_name || "Student"}
         points={student?.points || 0}
@@ -71,30 +71,30 @@ export async function StudentDashboard({ userId, profile }: StudentDashboardProp
       <main className="container mx-auto p-6 space-y-8">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white border-0">
+          <Card className="bg-gradient-to-br from-blue-400 to-blue-600 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
               <CardDescription className="text-blue-100">Total Points</CardDescription>
               <CardTitle className="text-4xl">{student?.points || 0}</CardTitle>
             </CardHeader>
             <CardContent>
-              <Progress value={(student?.points || 0) % 100} className="bg-blue-400" />
+              <Progress value={(student?.points || 0) % 100} className="bg-blue-300" />
               <p className="text-sm text-blue-100 mt-2">{100 - ((student?.points || 0) % 100)} points to next level</p>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white border-0">
+          <Card className="bg-gradient-to-br from-purple-400 to-purple-600 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
               <CardDescription className="text-purple-100">Current Level</CardDescription>
               <CardTitle className="text-4xl">Level {student?.level || 1}</CardTitle>
             </CardHeader>
             <CardContent>
-              <Badge className="bg-purple-400 text-white border-0">
+              <Badge className="bg-purple-300 text-purple-900 border-0 text-sm font-bold">
                 {student?.level === 1 ? "Beginner" : student?.level < 5 ? "Explorer" : "Master"}
               </Badge>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-orange-500 to-orange-600 text-white border-0">
+          <Card className="bg-gradient-to-br from-orange-400 to-orange-600 text-white border-0 shadow-lg">
             <CardHeader className="pb-3">
               <CardDescription className="text-orange-100">Learning Streak</CardDescription>
               <CardTitle className="text-4xl">{student?.streak_days || 0} days</CardTitle>
@@ -107,14 +107,14 @@ export async function StudentDashboard({ userId, profile }: StudentDashboardProp
 
         {/* Subjects */}
         <div>
-          <h2 className="text-3xl font-bold mb-6 text-balance">Choose Your Subject</h2>
+          <h2 className="text-3xl font-bold mb-6 text-balance text-center">Choose Your Subject</h2>
           <SubjectGrid subjects={subjects || []} studentId={student?.id || ""} />
         </div>
 
         {/* Recent Activity */}
         {recentAttempts && recentAttempts.length > 0 && (
           <div>
-            <h2 className="text-2xl font-bold mb-4">Recent Activity</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Recent Activity</h2>
             <RecentActivity attempts={recentAttempts} />
           </div>
         )}
