@@ -13,7 +13,7 @@ export default function PricingPage() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/">
-              <h1 className="text-3xl font-bold text-blue-600">IYF STUDIO</h1>
+              <h1 className="text-3xl font-bold text-blue-600">Dominus Learning</h1>
             </Link>
             <Button asChild variant="outline" className="bg-transparent">
               <Link href="/auth/login">Login</Link>

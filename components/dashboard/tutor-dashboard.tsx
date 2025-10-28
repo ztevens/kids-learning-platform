@@ -39,7 +39,7 @@ export function TutorDashboard({ userId, profile, tutor, assignments }: TutorDas
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <h1 className="text-3xl font-bold text-blue-600">IYF STUDIO</h1>
+              <h1 className="text-3xl font-bold text-blue-600">Dominus Learning</h1>
               <Badge variant="secondary">Tutor</Badge>
             </div>
 

@@ -35,7 +35,7 @@ export function ParentDashboard({ profile, parent, children, weeklyInsights }: P
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <h1 className="text-3xl font-bold text-blue-600">IYF STUDIO</h1>
+              <h1 className="text-3xl font-bold text-blue-600">Dominus Learning</h1>
               <Badge variant="secondary">Parent</Badge>
             </div>
 

@@ -14,7 +14,7 @@ export default async function ErrorPage({
       <div className="w-full max-w-sm">
         <div className="flex flex-col gap-6">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-blue-600 mb-2">IYF STUDIO</h1>
+            <h1 className="text-4xl font-bold text-blue-600 mb-2">Dominus Learning</h1>
           </div>
           <Card>
             <CardHeader>

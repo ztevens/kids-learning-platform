@@ -19,14 +19,14 @@ export function FancyLogo({ size = "md", clickable = true }: FancyLogoProps) {
     <div className="flex items-center gap-2">
       <div className="relative">
         <div className={`${sizeClasses[size]} font-black bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500 bg-clip-text text-transparent tracking-wider drop-shadow-lg`}>
-          IYF
+          DOMINUS
         </div>
         <div className="absolute -top-1 -right-1 text-yellow-400 animate-bounce">
           ✨
         </div>
       </div>
       <div className={`${sizeClasses[size]} font-black bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 bg-clip-text text-transparent tracking-wider drop-shadow-lg`}>
-        STUDIO
+        LEARNING
       </div>
       <div className="flex flex-col gap-1">
         <div className="text-blue-500 animate-pulse">🚀</div>
