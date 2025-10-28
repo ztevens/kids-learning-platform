@@ -38,7 +38,7 @@ export default function HomePage() {
           <div className="flex justify-center">
             <FancyLogo size="xl" clickable={false} />
           </div>
-          <p className="text-2xl text-muted-foreground">Gamified Learning Platform for Years 1-6 🎮📚</p>
+          <p className="text-2xl text-muted-foreground">Gamified Learning Platform for Years 1-6 🎮📚✨</p>
         </div>
 
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
